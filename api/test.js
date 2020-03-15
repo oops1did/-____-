@@ -1,8 +1,9 @@
 
 var fs = require('fs');
+var os = require('os');
 
 module.exports = function (req, res) {
-  fs.writeFileSync('./test.txt', 'testing123')
-  var dir = fs.readdirSync('.')
-  res.end('.... '+JSON.stringify(dir))
+  var tmpdir = os.tmpdir();
+  var dir = fs.readdirSync(tmpdir)
+  res.end('.... '+tmpdir)
 }
