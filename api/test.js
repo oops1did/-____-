@@ -1,4 +1,7 @@
 
+var fs = require('fs');
+
 module.exports = function (req, res) {
-  res.end('.... ')
+  var dir = fs.readdirSync()
+  res.end('.... '+JSON.stringify(dir))
 }
