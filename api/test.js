@@ -18,7 +18,7 @@ module.exports = function (req, res) {
         req.on('data', function (d) { incoming += d.toString() })
         req.on('end', function () {
             var t = querystring.parse(incoming)
-            return res.end(t.password);
+            return res.end(hash256(t.password));
             if (t.hasOwnProperty('password') && hash256(t.password) === password_hash) {
                 res.end('from post'+JSON.stringify(t))
             } else {
