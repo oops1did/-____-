@@ -17,11 +17,12 @@ module.exports = function (req, res) {
         req.on('data', function (d) { incoming += d.toString() })
         req.on('end', function () {
             var t = querystring.parse(incoming)
-            if (t.hasOwnProperty('password') && hash256(t.password) === password_hash) {
-                res.end('from post'+JSON.stringify(t))
-            } else {
-                res.end('access denied')
-            }
+            return res.end(password_hash);
+//             if (t.hasOwnProperty('password') && hash256(t.password) === password_hash) {
+//                 res.end('from post'+JSON.stringify(t))
+//             } else {
+//                 res.end('access denied')
+//             }
         })
     } else {
         res.end(req.url)
