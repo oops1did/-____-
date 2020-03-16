@@ -1,7 +1,18 @@
 
 var fs = require('fs');
 var os = require('os');
+var querystring = require('querystring');
 
 module.exports = function (req, res) {
-    res.end(req.url);
+    if (req.method = 'POST') {
+        var d = ''
+        req.on('data', function (_d) {
+           d += _d.toString()
+        })
+        req.on('end', function () {
+            req.end(d);    
+        })
+    } else {
+        res.end(req.url);
+    }
 }
