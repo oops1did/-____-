@@ -18,7 +18,11 @@ module.exports = function (req, res) {
         req.on('data', function (d) { incoming += d.toString() })
         req.on('end', function () {
             var t = querystring.parse(incoming)
-            return res.end(hash256(t.password));
+            if (hash256(t.password) === password_hash) {
+                return res.end('ok');
+            } else {
+                return res.end('denied')   
+            }
         })
     } else {
         res.end(req.url)
