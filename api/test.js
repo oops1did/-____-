@@ -8,7 +8,8 @@ module.exports = function (req, res) {
         var incoming = ''
         req.on('data', function (d) { incoming += d.toString() })
         req.on('end', function () {
-            res.end('from post'+incoming);
+            var t = querystring.parse(incoming);
+            res.end('from post'+JSON.stringify(t)+ ' ' Object.keys(t).length);
         })
     } else {
         res.end(req.url);
