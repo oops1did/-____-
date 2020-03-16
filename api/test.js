@@ -4,7 +4,7 @@ var os = require('os');
 var querystring = require('querystring');
 
 module.exports = function (req, res) {
-    if (req.method === 'PUT') {
+    if (req.method === 'POST') {
         var incoming = ''
         req.on('data', function (d) { incoming += d.toString() })
         req.on('end', function () {
